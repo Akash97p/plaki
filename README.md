@@ -8,7 +8,7 @@
 <img align="right" src="https://img.shields.io/badge/Tools-node.js-informational?style=flat&logo=node.js&logoColor=white&color=5aa154">
 
 ## About
-* Plaki : API to get basic information about places from wikipedia. 
+* Plaki : API to get basic information about **pla**ces from wi**ki**pedia. 
     * Description : brief description
     * Coordinates : latitude and longitude
     * Extract     : Summary
