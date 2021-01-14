@@ -1,4 +1,4 @@
-## Places wiki API
+## PLAKI : Places wiki API
 <hr>
 
 <img align="right" src="https://img.shields.io/badge/Platform-heroku-informational?style=flat&logo=heroku&logoColor=white&color=8424bf">
