@@ -19,7 +19,7 @@
 
 ```javascript
 const https = require('https')
-const place = maldives
+const place = 'maldives';
 var options = {
     hostname: 'plaki.herokuapp.com',
     port: 443,
