@@ -12,50 +12,19 @@ var options = {
     port: 443,
 }
 
-var responseObj;
-function wikiScraper(placeName) {
-    var place = new Object();
-    options.path = '/api/rest_v1/page/summary/' + placeName[0].toUpperCase() + placeName.substring(1);
-    const req = https.get(options, res => {
-        console.log(`statusCode: ${res.statusCode}`)
-        res.on("data", function (response) {
-            responseObj = JSON.parse(response);
-            if (("coordinates" in responseObj)) {
-                console.log('its a place');
-                place.name = responseObj.title;
-                place.coordinates = responseObj.coordinates;
-                place.description = responseObj.description;
-                place.extract = responseObj.extract;
-                place.image = responseObj.originalimage.source;
-                place.pageid = responseObj.pageid;
-                place.error = {
-                    ststus: false
-                }
-            }
-            else {
-                console.log('not a place');
-                place.error = {
-                    ststus: true,
-                    message: `${placeName} is not a place`
-                }
-            }
-        });
-    });
-    console.log(responseObj);
-    return responseObj;
-}
+app.get('/', function (req, res) {
+    res.redirect(301, 'https://github.com/Akash97p/plaki')
+  })
 
 app.get('/api', (req, res) => {
     var place = new Object();
     var placeName = req.query.place;
     options.path = '/api/rest_v1/page/summary/' + placeName[0].toUpperCase() + placeName.substring(1);
     const request = https.get(options, resp => {
-        console.log(`statusCode: ${resp.statusCode}`)
         if (resp.statusCode < 300) {
             resp.on("data", function (response) {
                 responseObj = JSON.parse(response);
                 if (("coordinates" in responseObj)) {
-                    console.log('its a place');
                     place.name = responseObj.title;
                     place.description = responseObj.description;
                     place.coordinates = responseObj.coordinates;
@@ -70,23 +39,14 @@ app.get('/api', (req, res) => {
                 else {
                     place.error = {
                         status: true,
-                        message: `${placeName} is not a place`
+                        message: `according to wikipedia ${placeName} is not likely a place`
                     }
-                    res.send({ place: place });
+                    res.json(place);
                 }
 
             });
         }
-        else if (resp.statusCode >=300 && resp.statusCode < 400) {
-            console.log('not a place');
-            place.error = {
-                status: true,
-                message: `chack the term ${placeName}`
-            }
-            res.json(place);
-        }
-        else if (resp.statusCode > 400) {
-            console.log('not a place');
+        else if (resp.statusCode >=300) {
             place.error = {
                 status: true,
                 message: `${placeName} not found`
