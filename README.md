@@ -1,4 +1,4 @@
-## Places wiki API
+## PLAKI : Places wiki API
 <hr>
 
 <img align="right" src="https://img.shields.io/badge/Platform-heroku-informational?style=flat&logo=heroku&logoColor=white&color=8424bf">
@@ -9,17 +9,24 @@
 
 ## About
 * Plaki : API to get basic information about **pla**ces from wi**ki**pedia. 
+<<<<<<< HEAD
     * description : Brief description
     * coordinates : Latitude and Longitude
     * extract     : Summary
     * image       : Wiki image link
+=======
+    * Description : brief description
+    * Coordinates : latitude and longitude
+    * Extract     : Summary
+    * Image       : Wiki image link
+>>>>>>> 61bbb3d038f3583307df446fc626e9485879e66b
     * pageid      : Wiki page ID
 
 #### Node.js Example
 
 ```javascript
 const https = require('https')
-const place = maldives
+const place = 'maldives';
 var options = {
     hostname: 'plaki.herokuapp.com',
     port: 443,
